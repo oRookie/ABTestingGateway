@@ -1,0 +1,74 @@
+----local delArrayElement = function(src, del)
+----    local hash_del = {}
+----    for key, var in pairs(del) do
+----        hash_del[var] = (hash_del[var] or 0) + 1
+----    end
+----    for key, var in pairs(src) do
+----        --print(key, var)
+----        --print(hash_del[var], hash_del[var] > 0)
+----        if (hash_del[var] and (hash_del[var] > 0)) then
+----            table.remove(src, key)
+----        end
+----    end
+----end
+----
+----function split(str, reps)
+----    local resultStrList = {}
+----    string.gsub(str, '[^' .. reps .. ']+', function(w)
+----        table.insert(resultStrList, w)
+----    end)
+----    return resultStrList
+----end
+----
+----local t = { 'beta1', 'beta2', 'beta3', 'beta4', 'beta5' }
+----local t_del = split("beta1,beta2,beta5", ",")
+----print(t_del)
+----delArrayElement(t, t_del)
+----for i, v in pairs(t) do
+----    print(v)
+----end
+----
+--
+--
+--local socket = require "socket"
+--print("Milliseconds: " .. socket.gettime()*1000)
+
+--./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module --add-module=/Users/like/work/comments/lua-nginx-module  --add-module=/Users/hecom/Downloads/ngx_devel_kit
+
+--
+--local num1 = 0
+--local num2 = 0
+--local num3 = 0
+--local num4 = 0
+--local num5 = 0
+--local num6 = 0
+--local num7 = 0
+--local num8 = 0
+--for i = 1, 100000 do
+--    math.randomseed(current_time_millis())
+--    local num = math.random(1, 8)
+--    print(num)
+--    if num == 1 then
+--        num1 = num1 + 1
+--    elseif num == 2 then
+--        num2 = num2 + 1
+--    elseif num == 3 then
+--        num3 = num3 + 1
+--    elseif num == 4 then
+--        num4 = num4 + 1
+--    elseif num == 5 then
+--        num5 = num5 + 1
+--    elseif num == 6 then
+--        num6 = num6 + 1
+--    elseif num == 7 then
+--        num7 = num7 + 1
+--    elseif num == 8 then
+--        num8 = num8 + 1
+--    end
+--end
+--print(num1, num2, num3, num4, num5, num6, num7, num8)
+
+package.cpath = "/usr/local/lib/lua/5.4/?.so;"
+local cjson = require("cjson.safe")
+local a = { ["1"] = "1" }
+print(cjson.encode(a))

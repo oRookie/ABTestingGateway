@@ -1,0 +1,84 @@
+
+iprange分流方式的策略样例：
+
+{
+"divupstreams":"beta1,beta2",
+"divtype":"iprange",
+"divdata":[
+{"range":{"start":1111, "end":2222}, "upstream":"beta1"},
+{"range":{"start":3333, "end":4444}, "upstream":"beta2"},
+{"range":{"start":5555, "end":6666}, "upstream":"beta1"},
+{"range":{"start":7777, "end":2130706439}, "upstream":"beta3"}]
+}
+
+sudo ./proxy --addr=127.0.0.1:80 --addr-rpc=127.0.0.1:9091 --addr-store=etcd://127.0.0.1:2379 --namespace=test
+./apiserver --addr=127.0.0.1:9091 --addr-store=etcd://127.0.0.1:2379 --discovery --namespace=test -ui=ui/dist
+
+uidrange分流方式的策略样例：
+
+{
+"divupstreams":"beta1,beta2",
+"divtype":"uidrange",
+"divdata":[
+{"range":{"start":1111, "end":2222}, "upstream":"beta1"},
+{"range":{"start":3333, "end":4444}, "upstream":"beta2"},
+{"range":{"start":5555, "end":6666}, "upstream":"beta1"},
+{"range":{"start":7777, "end":1661638660}, "upstream":"beta3"}]
+}f
+
+uidsuffix分流方式的策略样例：
+
+{
+"divupstreams":"beta1,beta2",
+"divtype":"uidsuffix",
+"divdata":[
+{"suffix":"0", "upstream":"beta3"}]
+}
+
+
+uidappoint分流方式的策略样例：
+
+{
+"divupstreams":"beta1,beta2",
+"divtype":"uidappoint",
+"divdata":[
+{"uidset":["1143321","43214321","324124"], "upstream":"beta1"},
+{"uidset":["34321","324213", "234321"], "upstream":"beta2"},
+{"uidset":["245245","4325","5324","542"], "upstream":"beta1"},
+{"uidset":["546","563","656", "1661638660"], "upstream":"beta3"}]
+}
+
+
+uid_flow_range分流方式策略
+{
+    "1":{
+        "divupstreams":"beta1",
+        "divtype":"uid_flow_range",
+        "divdata":[
+            {
+                "range":{
+                    "start":0,
+                    "end":5
+                },
+                "upstream":"beta1"
+            }
+        ]
+    }
+}
+
+ip_flow_range分流方式策略
+{
+    "1":{
+        "divupstreams":"beta1,beta2",
+        "divtype":"ip_flow_range",
+        "divdata":[
+            {
+                "range":{
+                    "start":0,
+                    "end":5
+                },
+                "upstream":"beta1"
+            }
+        ]
+    }
+}
